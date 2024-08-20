@@ -8716,6 +8716,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "EPPlus >= 7.3.0",
+      "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SQLite >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
@@ -8767,6 +8768,12 @@
           "EPPlus": {
             "target": "Package",
             "version": "[7.3.0, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[8.0.8, )"
           },
           "Microsoft.EntityFrameworkCore.SQLite": {
             "target": "Package",
