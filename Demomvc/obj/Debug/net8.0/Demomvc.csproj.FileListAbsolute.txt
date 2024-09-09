@@ -13,7 +13,6 @@ C:\PTPMQL\Demomvc\obj\Debug\net8.0\Demomvc.csproj.CoreCompileInputs.cache
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\Demomvc.MvcApplicationPartsAssemblyInfo.cache
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\Demomvc.RazorAssemblyInfo.cache
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\Demomvc.RazorAssemblyInfo.cs
-C:\PTPMQL\Demomvc\obj\Debug\net8.0\Demomvc.sourcelink.json
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\staticwebassets.build.json
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\staticwebassets.development.json
 C:\PTPMQL\Demomvc\obj\Debug\net8.0\staticwebassets\msbuild.Demomvc.Microsoft.AspNetCore.StaticWebAssets.props

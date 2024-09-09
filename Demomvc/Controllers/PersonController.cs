@@ -10,22 +10,22 @@ using Demomvc.Models;
 
 namespace Demomvc.Controllers
 {
-    public class StudentController : Controller
+    public class PersonsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentController(ApplicationDbContext context)
+        public PersonController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        
+   
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Student.ToListAsync());
+            return View(await _context.Person.ToListAsync());
         }
 
-
+    
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -33,37 +33,39 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.MaSinhVien == id);
-            if (student == null)
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.PersonId == id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(person);
         }
 
- 
+        // GET: Person/Create
         public IActionResult Create()
         {
             return View();
         }
 
-       
+        // POST: Person/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaSinhVien,HoTen")] Student student)
+        public async Task<IActionResult> Create([Bind("PersonId,FullName")] Person person)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(person);
         }
 
-
+        // GET: Person/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -71,20 +73,22 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
+            var person = await _context.Person.FindAsync(id);
+            if (person == null)
             {
                 return NotFound();
             }
-            return View(student);
+            return View(person);
         }
 
-       
+        // POST: Person/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaSinhVien,HoTen")] Student student)
+        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName")] Person person)
         {
-            if (id != student.MaSinhVien)
+            if (id != person.PersonId)
             {
                 return NotFound();
             }
@@ -93,12 +97,12 @@ namespace Demomvc.Controllers
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(person);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.MaSinhVien))
+                    if (!PersonExists(person.PersonId))
                     {
                         return NotFound();
                     }
@@ -109,10 +113,10 @@ namespace Demomvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(person);
         }
 
-        // GET: Student/Delete/5
+        // GET: Person/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -120,34 +124,34 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.MaSinhVien == id);
-            if (student == null)
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.PersonId == id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(person);
         }
 
-  
+        // POST: Person/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var student = await _context.Student.FindAsync(id);
-            if (student != null)
+            var person = await _context.Person.FindAsync(id);
+            if (person != null)
             {
-                _context.Student.Remove(student);
+                _context.Person.Remove(person);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(string id)
+        private bool PersonExists(string id)
         {
-            return _context.Student.Any(e => e.MaSinhVien == id);
+            return _context.Person.Any(e => e.PersonId == id);
         }
     }
 }

@@ -10,19 +10,19 @@ using Demomvc.Models;
 
 namespace Demomvc.Controllers
 {
-    public class StudentController : Controller
+    public class DaiLyController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentController(ApplicationDbContext context)
+        public DaiLyController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        
+      
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Student.ToListAsync());
+            return View(await _context.DaiLy.ToListAsync());
         }
 
 
@@ -33,34 +33,33 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.MaSinhVien == id);
-            if (student == null)
+            var daiLy = await _context.DaiLy
+                .FirstOrDefaultAsync(m => m.MaDaiLy == id);
+            if (daiLy == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(daiLy);
         }
 
- 
         public IActionResult Create()
         {
             return View();
         }
 
-       
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaSinhVien,HoTen")] Student student)
+        public async Task<IActionResult> Create([Bind("MaDaiLy,TenDaiLy,DiaChi,NguoiDaiDien,DienThoai,MaHTPP")] DaiLy daiLy)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(daiLy);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(daiLy);
         }
 
 
@@ -71,20 +70,20 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
+            var daiLy = await _context.DaiLy.FindAsync(id);
+            if (daiLy == null)
             {
                 return NotFound();
             }
-            return View(student);
+            return View(daiLy);
         }
 
-       
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaSinhVien,HoTen")] Student student)
+        public async Task<IActionResult> Edit(string id, [Bind("MaDaiLy,TenDaiLy,DiaChi,NguoiDaiDien,DienThoai,MaHTPP")] DaiLy daiLy)
         {
-            if (id != student.MaSinhVien)
+            if (id != daiLy.MaDaiLy)
             {
                 return NotFound();
             }
@@ -93,12 +92,12 @@ namespace Demomvc.Controllers
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(daiLy);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.MaSinhVien))
+                    if (!DaiLyExists(daiLy.MaDaiLy))
                     {
                         return NotFound();
                     }
@@ -109,10 +108,9 @@ namespace Demomvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(daiLy);
         }
 
-        // GET: Student/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -120,34 +118,34 @@ namespace Demomvc.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.MaSinhVien == id);
-            if (student == null)
+            var daiLy = await _context.DaiLy
+                .FirstOrDefaultAsync(m => m.MaDaiLy == id);
+            if (daiLy == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(daiLy);
         }
 
-  
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var student = await _context.Student.FindAsync(id);
-            if (student != null)
+            var daiLy = await _context.DaiLy.FindAsync(id);
+            if (daiLy != null)
             {
-                _context.Student.Remove(student);
+                _context.DaiLy.Remove(daiLy);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(string id)
+        private bool DaiLyExists(string id)
         {
-            return _context.Student.Any(e => e.MaSinhVien == id);
+            return _context.DaiLy.Any(e => e.MaDaiLy == id);
         }
     }
 }
