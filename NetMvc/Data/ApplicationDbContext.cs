@@ -15,5 +15,6 @@ namespace NetMvcData
         }
 
         public DbSet<NetMvc.Models.Entity.Student> Student { get; set; } = default!;
+         public DbSet<NetMvc.Models.Entity.Person> Person { get; set; } = default!;
     }
 }
