@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 namespace CRUD.Models
 
 {
-    public class Employee 
+    public class Employee : Person
     {
-        [Key]
+      
         public int Tuoi { get; set; }
         public string GioiTinh { get; set; }
 
