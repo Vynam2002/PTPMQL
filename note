@@ -1,0 +1,65 @@
+
+Đẩy code lên git lần 1:
+git init 
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/YourName/DemoJava.git
+git push -u origin main
+
+Đẩy code lên git những lần sau
+git add .						
+git commit -m "commit note"
+git push
+(git push -u origin tên branch)
+
+git remote remove origin hoặc vào credential manager xóa tk git cũ khi bị lỗi
+
+lệnh tạo file: dotnet new mvc -o name
+
+làm bài 
+b1: setup: copy code dưới đây và cài vào 
+dotnet tool uninstall --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-aspnet-codegenerator 
+dotnet tool uninstall --global dotnet-ef
+dotnet tool install --global dotnet-ef 
+
+cài package:
+dotnet add package Microsoft.EntityFrameworkCore.Design 
+dotnet add package Microsoft.EntityFrameworkCore.SQLite  (là package trung gian để kết nối với csdl)
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design 
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer 
+dotnet add package Microsoft.EntityFrameworkCore.Tools (Sài để tự add chức năng)
+
+dotnet add package EPPlus ( PACKAGE làm việc với EXCEL)
+
+b2: tạo model : tenfile.cs > khai báo class > trường dữ liệu lưu ý để dạng string
+câu lệnh dài sinh code tự động:
+dotnet-aspnet-codegenerator controller -name SaleController -m Sale -dc LTQDD --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+
+b3: ÁNH XẠ:
+dotnet ef migrations add Create_Database
+dotnet ef database update
+dotnet watch run
+
+
+* trong Model  Student phải có:
+using System.Security.AccessControl;
+using System.ComponentModel.DataAnnotations;
+
+
+tip bổ sung:
+tên tiếng việt [Display(Name = "Họ và tên")]
+sửa giao diện: vào index
+
+tip bổ sung khi làm việc với nhánh (thi k cần)
+git checkout (tạo) 
+git checkout -b tên (tạo và di chuyển đến nhánh )
+git branch (xem các branch)
+sửa appsetting.jason,ghép 2 nhánh : git merge tên_nhánh
+
+tạo folder
+cd folder
+git clone đường_link_dự_án vào folder   ,tham khảo epplus tutorial
+
+ 
